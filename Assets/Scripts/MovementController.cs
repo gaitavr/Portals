@@ -32,9 +32,7 @@ public class MovementController : MonoBehaviour
             targetEuler.x -= 360.0f;
         }
         targetEuler.x = Mathf.Clamp(targetEuler.x, -75.0f, 75.0f);
-        _targetRotation = Quaternion.Euler(targetEuler);
-        transform.rotation = _targetRotation;//Quaternion.Slerp(transform.rotation, _targetRotation,
-            //Time.deltaTime * 15.0f);
+        transform.rotation = Quaternion.Euler(targetEuler);
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");

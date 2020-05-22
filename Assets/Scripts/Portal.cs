@@ -6,6 +6,8 @@ public class Portal : MonoBehaviour
     private Color _color;
     [SerializeField] 
     private Renderer _outline;
+    [SerializeField] 
+    private Portal _other;
 
     private Material _material;
     private Renderer _renderer;
@@ -13,6 +15,10 @@ public class Portal : MonoBehaviour
     private RenderTexture _rTexture;
 
     private const int RENDER_ITERATION = 5;
+
+    private Teleporter _currentObj;
+    [SerializeField]
+    private Collider[] _wallColliders;
 
     private void Awake()
     {
@@ -23,7 +29,7 @@ public class Portal : MonoBehaviour
         _outline.material.SetColor("_MainColor", _color);
     }
 
-    public void Render(Portal other, Camera mainCamera, Camera portalCamera)
+    public void Render(Camera mainCamera, Camera portalCamera)
     {
         if (!_renderer.isVisible)
         {
@@ -32,15 +38,15 @@ public class Portal : MonoBehaviour
         portalCamera.targetTexture = _rTexture;
         for (int i = RENDER_ITERATION - 1; i >= 0; --i)
         {
-            RenderInternal(other, mainCamera, portalCamera, i);
+            RenderInternal(mainCamera, portalCamera, i);
         }
     }
 
-    private void RenderInternal(Portal destination, Camera mainCamera, Camera portalCamera, 
+    private void RenderInternal(Camera mainCamera, Camera portalCamera, 
         int iteration)
     {
         Transform enterPoint = transform;
-        Transform exitPoint = destination.transform;
+        Transform exitPoint = _other.transform;
 
         Transform portalCamTransform = portalCamera.transform;
         portalCamTransform.position = mainCamera.transform.position;
@@ -71,5 +77,35 @@ public class Portal : MonoBehaviour
 
         var newMatrix = mainCamera.CalculateObliqueMatrix(clipPlaneCameraSpace);
         portalCamera.projectionMatrix = newMatrix;
+    }
+
+    private void Update()
+    {
+        if (_currentObj != null)
+        {
+            Vector3 objPos = transform.InverseTransformPoint(_currentObj.transform.position);
+
+            if (objPos.z > 0.0f)
+            {
+                _currentObj.Warp();
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var teleporter = other.GetComponent<Teleporter>();
+        if (teleporter != null)
+        {
+            teleporter.EnterPortal(this, _other, _wallColliders);
+            _currentObj = teleporter;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        var teleporter = other.GetComponent<Teleporter>();
+        teleporter.ExitPortal(_wallColliders);
+        _currentObj = null;
     }
 }

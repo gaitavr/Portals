@@ -122,6 +122,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!64 &7358944 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 64734768092488202, guid: c73151b2c863d094393f47d50c325553,
+    type: 3}
+  m_PrefabInstance: {fileID: 1706314595}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &29587908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -906,6 +912,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4633411911301862, guid: 293e268728ae1704b931bbef9043c082,
     type: 3}
   m_PrefabInstance: {fileID: 162494814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &170956611 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 64416801225694416, guid: 7314c015f88e565459fd79bfb3d7cb82,
+    type: 3}
+  m_PrefabInstance: {fileID: 843401757}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &199733899
 PrefabInstance:
@@ -2813,6 +2825,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _color: {r: 0.034597818, g: 0.7264151, b: 0, a: 1}
   _outline: {fileID: 1624954040}
+  _other: {fileID: 2018316943}
+  _wallColliders:
+  - {fileID: 7358944}
+  - {fileID: 170956611}
 --- !u!65 &628127169
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2821,7 +2837,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628127167}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.0000002, y: 1, z: 0.1}
@@ -4453,8 +4469,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa9b1e64de2bb147878d45d482b8741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _portal1: {fileID: 2018316943}
-  _portal2: {fileID: 628127168}
+  _portals:
+  - {fileID: 2018316943}
+  - {fileID: 628127168}
   _portalCamera: {fileID: 1092753840}
 --- !u!1001 &964007604
 PrefabInstance:
@@ -7057,6 +7074,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508763955}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!64 &1517073721 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 64734768092488202, guid: c73151b2c863d094393f47d50c325553,
+    type: 3}
+  m_PrefabInstance: {fileID: 316716480}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1523333813
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7965,6 +7988,7 @@ GameObject:
   - component: {fileID: 1823672274}
   - component: {fileID: 1823672273}
   - component: {fileID: 1823672276}
+  - component: {fileID: 1823672277}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -8031,6 +8055,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1823672277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823672272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e575578fd1e014428f63282aaa219cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1828443181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9064,6 +9100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _color: {r: 0.764151, g: 0, b: 0, a: 1}
   _outline: {fileID: 1508763957}
+  _other: {fileID: 628127168}
+  _wallColliders:
+  - {fileID: 2063628285}
+  - {fileID: 1517073721}
 --- !u!65 &2018316944
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9072,7 +9112,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018316942}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.0000002, y: 1, z: 0.1}
@@ -9518,6 +9558,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4992148559864822, guid: a5a328fd0bdbc82418c900ec0e290bd4,
     type: 3}
   m_PrefabInstance: {fileID: 2058940920}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &2063628285 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 64416801225694416, guid: 7314c015f88e565459fd79bfb3d7cb82,
+    type: 3}
+  m_PrefabInstance: {fileID: 1060491268}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2064555140
 PrefabInstance:

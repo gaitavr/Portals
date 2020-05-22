@@ -2,10 +2,8 @@
 
 public class MainCamera : MonoBehaviour
 {
-    [SerializeField] private Portal _portal1;
-    [SerializeField] private Portal _portal2;
-
-    
+    [SerializeField] 
+    private Portal[] _portals;
     [SerializeField]
     private Camera _portalCamera;
 
@@ -18,7 +16,9 @@ public class MainCamera : MonoBehaviour
 
     private void OnPreRender()
     {
-        _portal1.Render(_portal2, _myCamera, _portalCamera);
-        _portal2.Render(_portal1, _myCamera, _portalCamera);
+        for (int i = 0; i < _portals.Length; i++)
+        {
+            _portals[i].Render(_myCamera, _portalCamera);
+        }
     }
 }
