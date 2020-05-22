@@ -26,7 +26,7 @@ public class Teleporter : MonoBehaviour
         _portal2 = outPortal;
         for (int i = 0; i < wallColliders.Length; i++)
         {
-            Physics.IgnoreCollision(_collider, wallColliders[i]);
+             Physics.IgnoreCollision(_collider, wallColliders[i]);
         }
     }
 
@@ -51,9 +51,10 @@ public class Teleporter : MonoBehaviour
         _rigidbody.velocity = p2Transform.TransformDirection(relativeVel);
 
         // Swap portal references.
-        var tmp = _portal1;
-        _portal1 = _portal2;
-        _portal2 = tmp;
+        //var tmp = _portal1;
+        //_portal1 = _portal2;
+        //_portal2 = tmp;
+        _movementController.ResetTargetRotation();
     }
 
     public void ExitPortal(Collider[] wallColliders)

@@ -32,7 +32,8 @@ public class MovementController : MonoBehaviour
             targetEuler.x -= 360.0f;
         }
         targetEuler.x = Mathf.Clamp(targetEuler.x, -75.0f, 75.0f);
-        transform.rotation = Quaternion.Euler(targetEuler);
+        _targetRotation = Quaternion.Euler(targetEuler);
+        transform.rotation = _targetRotation;
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
@@ -42,5 +43,11 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {
         _rigidbody.velocity = transform.TransformDirection(_movingVector);
+    }
+
+    public void ResetTargetRotation()
+    {
+        _targetRotation = Quaternion.LookRotation(transform.forward, Vector3.up);
+        transform.rotation = _targetRotation;
     }
 }
