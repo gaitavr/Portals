@@ -44,10 +44,4 @@ public class MovementController : MonoBehaviour
     {
         _rigidbody.velocity = transform.TransformDirection(_movingVector);
     }
-
-    public void ResetTargetRotation()
-    {
-        _targetRotation = Quaternion.LookRotation(transform.forward, Vector3.up);
-        transform.rotation = _targetRotation;
-    }
 }

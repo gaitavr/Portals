@@ -2804,6 +2804,7 @@ GameObject:
   - component: {fileID: 628127170}
   - component: {fileID: 628127169}
   - component: {fileID: 628127168}
+  - component: {fileID: 628127173}
   m_Layer: 0
   m_Name: Portal2
   m_TagString: Untagged
@@ -2823,8 +2824,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c393661a48fa45d4abaeb4a7a2ac4375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {r: 0.034597818, g: 0.7264151, b: 0, a: 1}
-  _outline: {fileID: 1624954040}
   _other: {fileID: 2018316943}
   _wallColliders:
   - {fileID: 7358944}
@@ -2840,7 +2839,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 1, z: 0.03}
+  m_Size: {x: 1.0000002, y: 1, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &628127170
 MeshRenderer:
@@ -2904,6 +2903,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &628127173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628127167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca861b5d04ea0344c9cb05c92d3cd138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _color: {r: 0.10436773, g: 1, b: 0, a: 1}
+  _outline: {fileID: 1624954040}
 --- !u!1001 &634158869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4423,7 +4436,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -9079,6 +9092,7 @@ GameObject:
   - component: {fileID: 2018316945}
   - component: {fileID: 2018316944}
   - component: {fileID: 2018316943}
+  - component: {fileID: 2018316948}
   m_Layer: 0
   m_Name: Portal1
   m_TagString: Untagged
@@ -9098,8 +9112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c393661a48fa45d4abaeb4a7a2ac4375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {r: 0.764151, g: 0, b: 0, a: 1}
-  _outline: {fileID: 1508763957}
   _other: {fileID: 628127168}
   _wallColliders:
   - {fileID: 2063628285}
@@ -9115,7 +9127,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 1, z: 0.03}
+  m_Size: {x: 1.0000002, y: 1, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2018316945
 MeshRenderer:
@@ -9179,6 +9191,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &2018316948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018316942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca861b5d04ea0344c9cb05c92d3cd138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _color: {r: 1, g: 0, b: 0, a: 1}
+  _outline: {fileID: 1508763957}
 --- !u!1001 &2020474984
 PrefabInstance:
   m_ObjectHideFlags: 0
