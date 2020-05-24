@@ -12,7 +12,7 @@ public class PortalRenderer : MonoBehaviour
 
     private RenderTexture _rTexture;
 
-    private const int RENDER_ITERATION = 5;
+    private const int RENDER_ITERATION = 3;
 
     private void Awake()
     {
