@@ -14,14 +14,7 @@ public static class PortalExtensions
     public static void MirrorRotation(this Transform target, Transform p1, Transform p2)
     {
         Quaternion relativeRot = Quaternion.Inverse(p1.rotation) * target.rotation;
-        relativeRot = Quaternion.Euler(0.0f, 180.0f, 0.0f) * relativeRot;
+        relativeRot = _halfTurn * relativeRot;
         target.rotation = p2.rotation * relativeRot;
-    }
-
-    public static void MirrorVelocity(this Rigidbody target, Transform p1, Transform p2)
-    {
-        Vector3 relativeVel = p1.InverseTransformDirection(target.velocity);
-        relativeVel = _halfTurn * relativeVel;
-        target.velocity = p2.TransformDirection(relativeVel);
     }
 }

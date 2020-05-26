@@ -7,24 +7,28 @@ public class Teleporter : MonoBehaviour
     private Portal _portal1;
     private Portal _portal2;
 
-    private Rigidbody _rigidbody;
     private Collider _collider;
-    private MovementController _movementController;
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
-        _movementController = GetComponent<MovementController>();
     }
 
-    public void EnterPortal(Portal inPortal, Portal outPortal, Collider[] wallColliders)
+    public void EnterPortal(Portal enterPortal, Portal exitPortal, Collider[] wallColliders)
     {
-        _portal1 = inPortal;
-        _portal2 = outPortal;
+        _portal1 = enterPortal;
+        _portal2 = exitPortal;
         for (int i = 0; i < wallColliders.Length; i++)
         {
-             Physics.IgnoreCollision(_collider, wallColliders[i]);
+            Physics.IgnoreCollision(_collider, wallColliders[i]);
+        }
+    }
+
+    public void ExitPortal(Collider[] wallColliders)
+    {
+        for (int i = 0; i < wallColliders.Length; i++)
+        {
+            Physics.IgnoreCollision(_collider, wallColliders[i], false);
         }
     }
 
@@ -35,14 +39,5 @@ public class Teleporter : MonoBehaviour
 
         transform.MirrorPosition(p1, p2);
         transform.MirrorRotation(p1, p2);
-        _rigidbody.MirrorVelocity(p1, p2);
-    }
-
-    public void ExitPortal(Collider[] wallColliders)
-    {
-        for (int i = 0; i < wallColliders.Length; i++)
-        {
-            Physics.IgnoreCollision(_collider, wallColliders[i], false);
-        }
     }
 }

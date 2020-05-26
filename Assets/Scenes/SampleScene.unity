@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca861b5d04ea0344c9cb05c92d3cd138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {r: 0.735849, g: 0.13536847, b: 0.13536847, a: 1}
+  _outlineColor: {r: 0.6886792, g: 0.1786668, b: 0.1786668, a: 1}
   _outline: {fileID: 7053190593018952363}
   _portalCamera: {fileID: 1080435980}
 --- !u!114 &666478662
@@ -1363,7 +1363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca861b5d04ea0344c9cb05c92d3cd138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {r: 0.13725491, g: 0.21312295, b: 0.7372549, a: 1}
+  _outlineColor: {r: 0.14733891, g: 0.29419464, b: 0.7264151, a: 1}
   _outline: {fileID: 2063836876}
   _portalCamera: {fileID: 1092753840}
 --- !u!1 &2032745161

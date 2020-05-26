@@ -2,8 +2,7 @@
 
 public class MainCamera : MonoBehaviour
 {
-    [SerializeField] 
-    private Portal[] _portals;
+    [SerializeField] private Portal[] _portals;
 
     private Camera _myCamera;
 
