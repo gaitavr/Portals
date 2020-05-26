@@ -4,7 +4,7 @@ public class PortalRenderer : MonoBehaviour
 {
     [SerializeField]
     private Color _color;
-    [SerializeField]
+    [SerializeField] 
     private Renderer _outline;
 
     private Material _material;
@@ -12,15 +12,15 @@ public class PortalRenderer : MonoBehaviour
 
     private RenderTexture _rTexture;
 
-    private const int RENDER_ITERATION = 3;
+    private const int RENDER_ITERATION = 4;
 
     private void Awake()
     {
         _renderer = GetComponent<Renderer>();
         _material = _renderer.material;
-        _rTexture = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);
+        _rTexture = new RenderTexture(Screen.width, Screen.height, 0);
         _material.mainTexture = _rTexture;
-        _outline.material.SetColor("_MainColor", _color);
+        _outline.material.color = _color;
     }
 
     public void Render(Camera mainCamera, Camera portalCamera, Transform otherPortal)
