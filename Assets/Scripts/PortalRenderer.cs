@@ -6,13 +6,14 @@ public class PortalRenderer : MonoBehaviour
     private Color _color;
     [SerializeField] 
     private Renderer _outline;
+    [SerializeField]
+    private Camera _portalCamera;
 
     private Material _material;
     private Renderer _renderer;
-
     private RenderTexture _rTexture;
 
-    private const int RENDER_ITERATION = 4;
+    private const int RENDER_ITERATION = 3;
 
     private void Awake()
     {
@@ -21,28 +22,27 @@ public class PortalRenderer : MonoBehaviour
         _rTexture = new RenderTexture(Screen.width, Screen.height, 0);
         _material.mainTexture = _rTexture;
         _outline.material.color = _color;
+        _portalCamera.targetTexture = _rTexture;
     }
 
-    public void Render(Camera mainCamera, Camera portalCamera, Transform otherPortal)
+    public void Render(Camera mainCamera, Transform otherPortal)
     {
         if (!_renderer.isVisible)
         {
             return;
         }
-        portalCamera.targetTexture = _rTexture;
         for (int i = RENDER_ITERATION - 1; i >= 0; --i)
         {
-            RenderInternal(mainCamera, portalCamera, i, otherPortal);
+            RenderInternal(mainCamera, i, otherPortal);
         }
     }
 
-    private void RenderInternal(Camera mainCamera, Camera portalCamera,
-        int iteration, Transform otherPortal)
+    private void RenderInternal(Camera mainCamera, int iteration, Transform otherPortal)
     {
         Transform enterPoint = transform;
         Transform exitPoint = otherPortal.transform;
 
-        Transform portalCamTransform = portalCamera.transform;
+        Transform portalCamTransform = _portalCamera.transform;
         portalCamTransform.position = mainCamera.transform.position;
         portalCamTransform.rotation = mainCamera.transform.rotation;
 
@@ -52,19 +52,19 @@ public class PortalRenderer : MonoBehaviour
             portalCamTransform.MirrorRotation(enterPoint, exitPoint);
         }
 
-        SetupProjection(mainCamera, portalCamera, exitPoint);
+        SetupProjection(mainCamera, exitPoint);
 
-        portalCamera.Render();
+        _portalCamera.Render();
     }
 
-    private void SetupProjection(Camera mainCamera, Camera portalCamera, Transform exitPoint)
+    private void SetupProjection(Camera mainCamera, Transform exitPoint)
     {
         Plane p = new Plane(-exitPoint.forward, exitPoint.position);
         Vector4 clipPlane = new Vector4(p.normal.x, p.normal.y, p.normal.z, p.distance);
         Vector4 clipPlaneCameraSpace =
-            Matrix4x4.Transpose(Matrix4x4.Inverse(portalCamera.worldToCameraMatrix)) * clipPlane;
+            Matrix4x4.Transpose(Matrix4x4.Inverse(_portalCamera.worldToCameraMatrix)) * clipPlane;
 
         var newMatrix = mainCamera.CalculateObliqueMatrix(clipPlaneCameraSpace);
-        portalCamera.projectionMatrix = newMatrix;
+        _portalCamera.projectionMatrix = newMatrix;
     }
 }

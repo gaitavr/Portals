@@ -46,8 +46,8 @@ public class Portal : MonoBehaviour
         _enteredObject = null;
     }
 
-    public void Render(Camera mainCamera, Camera portalCamera)
+    public void Render(Camera mainCamera)
     {
-        _renderer.Render(mainCamera, portalCamera, _other.transform);
+        _renderer.Render(mainCamera, _other.transform);
     }
 }
