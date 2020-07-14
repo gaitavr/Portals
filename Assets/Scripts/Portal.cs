@@ -4,15 +4,9 @@ public class Portal : MonoBehaviour
 {
     [SerializeField] private Portal _other;
     [SerializeField] private Collider[] _wallColliders;
-
-    private PortalRenderer _renderer;
+    [SerializeField] private PortalRenderer _renderer;
 
     private Teleporter _enteredObject;
-
-    private void Awake()
-    {
-        _renderer = GetComponent<PortalRenderer>();
-    }
 
     public void Render(Camera mainCamera)
     {
