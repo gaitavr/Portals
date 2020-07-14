@@ -3,6 +3,7 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _InactiveColor("Inactive Color", Color) = (1, 1, 1, 1)
     }
     SubShader
     {
@@ -29,6 +30,8 @@
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float4 _InactiveColor;
+            uniform int _DrawingFlag;
 
             v2f vert (appdata v)
             {
@@ -41,7 +44,7 @@
             fixed4 frag(v2f i) : SV_Target
             {
                 float2 uv = i.screenPos.xy / i.screenPos.w;
-                fixed4 col = tex2D(_MainTex, uv);
+                fixed4 col = tex2D(_MainTex, uv) * _DrawingFlag + _InactiveColor * (1 - _DrawingFlag);
                 return col;
             }
             ENDCG

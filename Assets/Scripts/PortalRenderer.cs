@@ -5,12 +5,11 @@ public class PortalRenderer : MonoBehaviour
     [SerializeField] private Color _outlineColor;
     [SerializeField] private Renderer _outline;
     [SerializeField] private Camera _portalCamera;
+    [SerializeField, Range(1, 10)] private int _renderIterations = 3;
 
     private Material _material;
     private Renderer _renderer;
     private RenderTexture _rTexture;
-
-    private const int RENDER_ITERATIONS = 3;
 
     private void Awake()
     {
@@ -20,6 +19,7 @@ public class PortalRenderer : MonoBehaviour
         _material.mainTexture = _rTexture;
         _portalCamera.targetTexture = _rTexture;
         _outline.material.color = _outlineColor;
+        _material.SetInt("_DrawingFlag", 1);
     }
 
     public void Render(Camera mainCamera, Transform otherPortal)
@@ -28,10 +28,11 @@ public class PortalRenderer : MonoBehaviour
         {
             return;
         }
-
-        for (int i = RENDER_ITERATIONS - 1; i >= 0; i--)
+        _material.SetInt("_DrawingFlag", 0);
+        for (int i = _renderIterations - 1; i >= 0; i--)
         {
             RenderInternal(mainCamera, otherPortal, i);
+            _material.SetInt("_DrawingFlag", 1);
         }
     }
     private void RenderInternal(Camera mainCamera, Transform otherPortal, int iteration)
